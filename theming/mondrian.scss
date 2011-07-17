@@ -1,3 +1,7 @@
+$base-color: #eee;
+$active-color: #ccc;
+$include-default-icons: false;
+
 @import 'sencha-touch/default/all';
 
 @include sencha-panel;
@@ -7,3 +11,43 @@
 @include sencha-layout;
 @include sencha-sheet;
 @include sencha-msgbox;
+
+
+@include pictos-iconmask('list');
+@include pictos-iconmask('info');
+
+.x-toolbar {
+  border-color:#aaa!important;
+  .x-toolbar-title {
+    font-weight:normal;
+    color:#777;
+    text-shadow:0 1px 0 #fff;
+  }
+}
+.x-docked-left {
+  border-right:1px solid #aaa!important;
+  background: #000!important;
+}
+.x-button-normal {
+  border:none!important;
+  background:none!important;
+  img {
+    background: #777!important;
+  }
+}
+.page {
+  background:#333;
+ .x-html {
+    background:#eee inline-image('canvas.png', 'image/png')!important;
+  }
+}
+.photo {
+  display:block;
+  margin:auto;
+  max-height:80%;
+  padding:8px;
+  background:#fff;
+  border:1px solid #ccc;
+  -webkit-box-shadow: 3px 3px 5px #ccc;
+  -webkit-transform: rotate(3deg)!important;
+}
