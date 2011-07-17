@@ -8,12 +8,14 @@ new Ext.Application({
         var viewport = this.viewport = new Ext.Panel({
             app: this,
             fullscreen: true,
-            layout: 'card'
+            layout: 'card',
+            showingPage: false,
+            showingSplash: true
         });
 
         // the page that displays each chapter
         var page = viewport.page = new Ext.Panel({
-            cls:'page',
+            cls: 'page',
             styleHtmlContent: true,
             tpl: '<h2>{title}</h2>{content}',
             scroll: 'vertical'
@@ -69,6 +71,9 @@ new Ext.Application({
         viewport.setProfile = function (profile) {
             if (profile=='portraitPhone') {
                 this.setActiveItem(this.menu);
+                if (!this.showingSplash) {
+                    this.setActiveItem(this.page);
+                }
             }
             if (profile=='landscapePhone') {
                 this.remove(this.menu, false);
@@ -102,7 +107,7 @@ new Ext.Application({
             }
         };
         backButton.setProfile = function (profile) {
-            if (profile=='portraitPhone') {
+            if (profile=='portraitPhone' && viewport.showingPage) {
                 this.show();
             } else {
                 this.hide();
@@ -117,8 +122,10 @@ new Ext.Application({
         // menu list (slides and) updates page with new content
         menuList.addListener('selectionchange', function (model, records) {
             if (records[0]) {
-                page.update(records[0].data);
                 viewport.setActiveItem(page, {type:'slide',direction:'left'});
+                page.update(records[0].data);
+                viewport.showingPage = true;
+                viewport.showingSplash = false;
                 if (app.getProfile()=='portraitPhone') {
                     backButton.show();
                 }
@@ -128,6 +135,7 @@ new Ext.Application({
         // back button slides back to (card) menu
         backButton.addListener('tap', function () {
             viewport.setActiveItem(menu, {type:'slide',direction:'right'});
+            viewport.showingPage = false;
             this.hide();
         });
 
