@@ -67,5 +67,64 @@ new Ext.Application({
         viewport.setActiveItem(page);
         page.update('<img class="photo" src="head.jpg">');
 
+        // add profile behaviors for relevant controls
+        viewport.setProfile = function (profile) {
+            if (profile=='portraitPhone') {
+                this.setActiveItem(this.menu);
+            }
+            if (profile=='landscapePhone') {
+                this.remove(this.menu, false);
+                this.setActiveItem(this.page);
+            }
+            if (profile=='portraitTablet') {
+                this.removeDocked(this.menu, false);
+            }
+            if (profile=='landscapeTablet') {
+                this.addDocked(this.menu);
+            }
+        };
+        menu.setProfile = function (profile) {
+            if (profile=="landscapePhone" || profile=="portraitTablet") {
+                this.hide();
+                if (this.rendered) {
+                    this.el.appendTo(document.body);
+                }
+                this.setFloating(true);
+                this.setSize(150, 200);
+            } else {
+                this.setFloating(false);
+                this.show();
+            }
+        };
+        menuButton.setProfile = function (profile) {
+            if (profile=="landscapePhone" || profile=="portraitTablet") {
+                this.show();
+            } else {
+                this.hide();
+            }
+        };
+        backButton.setProfile = function (profile) {
+            if (profile=='portraitPhone') {
+                this.show();
+            } else {
+                this.hide();
+            }
+        };
+
+    },
+    
+    profiles: {
+        portraitPhone: function() {
+            return Ext.is.Phone && Ext.orientation == 'portrait';
+        },
+        landscapePhone: function() {
+            return Ext.is.Phone && Ext.orientation == 'landscape';
+        },
+        portraitTablet: function() {
+            return Ext.orientation == 'portrait';
+        },
+        landscapeTablet: function() {
+            return Ext.orientation == 'landscape';
+        }
     }
 });
