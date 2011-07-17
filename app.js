@@ -60,7 +60,7 @@ new Ext.Application({
             items: [backButton, menuButton, {xtype:'spacer'}, infoButton]
         });
 
-        //stitch the UI together and create an entry page
+        // stitch the UI together and create an entry page
         viewport.addDocked(toolbar);
         viewport.setActiveItem(page);
         page.update('<img class="photo" src="head.jpg">');
@@ -108,6 +108,37 @@ new Ext.Application({
                 this.hide();
             }
         };
+
+        // menu button toggles (floating) menu
+        menuButton.addListener('tap', function () {
+            menu.showBy(this);
+        });
+
+        // menu list (slides and) updates page with new content
+        menuList.addListener('selectionchange', function (model, records) {
+            if (records[0]) {
+                page.update(records[0].data);
+                viewport.setActiveItem(page, {type:'slide',direction:'left'});
+                if (app.getProfile()=='portraitPhone') {
+                    backButton.show();
+                }
+            }
+        });
+
+        // back button slides back to (card) menu
+        backButton.addListener('tap', function () {
+            viewport.setActiveItem(menu, {type:'slide',direction:'right'});
+            this.hide();
+        });
+
+        // info button provides attribution
+        infoButton.addListener('tap', function () {
+            Ext.Msg.alert('',
+                'Information made available under ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA</a> ' +
+                'from <a href="http://en.wikipedia.org/wiki/Piet_Mondrian">Wikipedia</a>.'
+            );
+        })
 
     },
 
