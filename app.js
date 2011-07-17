@@ -8,9 +8,7 @@ new Ext.Application({
         var viewport = this.viewport = new Ext.Panel({
             app: this,
             fullscreen: true,
-            layout: 'card',
-            showingSplash: true,
-            showingPage: false
+            layout: 'card'
         });
 
         // the page that displays each chapter
