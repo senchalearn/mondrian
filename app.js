@@ -124,6 +124,7 @@ new Ext.Application({
             if (records[0]) {
                 viewport.setActiveItem(page, {type:'slide',direction:'left'});
                 page.update(records[0].data);
+                viewport.doLayout();
                 viewport.showingPage = true;
                 viewport.showingSplash = false;
                 if (app.getProfile()=='portraitPhone') {
