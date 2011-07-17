@@ -117,8 +117,8 @@ new Ext.Application({
         // menu list (slides and) updates page with new content
         menuList.addListener('selectionchange', function (model, records) {
             if (records[0]) {
-                page.update(records[0].data);
                 viewport.setActiveItem(page, {type:'slide',direction:'left'});
+                page.update(records[0].data);
                 if (app.getProfile()=='portraitPhone') {
                     backButton.show();
                 }
