@@ -33,13 +33,13 @@ new Ext.Application({
         var menu = viewport.menu = new Ext.Panel({
             items: [menuList],
             layout: 'fit',
-            width:150,
-            dock:'left'
+            width: 150,
+            dock: 'left'
         });
 
         // a button that toggles the menu when it is floating
         var menuButton = viewport.menuButton = new Ext.Button({
-            iconCls:'list',
+            iconCls: 'list',
             iconMask: true
         });
 
@@ -51,15 +51,15 @@ new Ext.Application({
 
         // a button that pops up a Wikipedia attribution
         var infoButton = viewport.infoButton = new Ext.Button({
-            iconCls:'info',
+            iconCls: 'info',
             iconMask: true
         });
 
         // the toolbar across the top of the app, containing the buttons
         var toolbar = this.toolbar = new Ext.Toolbar({
-            ui:'light',
+            ui: 'light',
             title: 'Piet Mondrian',
-            items: [backButton, menuButton, {xtype:'spacer'}, infoButton]
+            items: [backButton, menuButton, {xtype: 'spacer'}, infoButton]
         });
 
         // stitch the UI together and create an entry page
@@ -119,7 +119,7 @@ new Ext.Application({
         // menu list (slides and) updates page with new content
         menuList.addListener('selectionchange', function (model, records) {
             if (records[0]) {
-                viewport.setActiveItem(page, {type:'slide',direction:'left'});
+                viewport.setActiveItem(page, {type: 'slide', direction: 'left'});
                 page.update(records[0].data);
                 viewport.doLayout();
                 viewport.showingPage = true;
@@ -132,7 +132,7 @@ new Ext.Application({
 
         // back button slides back to (card) menu
         backButton.addListener('tap', function () {
-            viewport.setActiveItem(menu, {type:'slide',direction:'right'});
+            viewport.setActiveItem(menu, {type: 'slide', direction: 'right'});
             viewport.showingPage = false;
             this.hide();
         });
@@ -144,7 +144,7 @@ new Ext.Application({
                 '<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA</a> ' +
                 'from <a href="http://en.wikipedia.org/wiki/Piet_Mondrian">Wikipedia</a>.'
             );
-        })
+        });
 
     },
 
