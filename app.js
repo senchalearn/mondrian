@@ -159,10 +159,10 @@ new Ext.Application({
             return Ext.is.Phone && Ext.orientation == 'landscape';
         },
         portraitTablet: function() {
-            return Ext.orientation == 'portrait';
+            return !Ext.is.Phone && Ext.orientation == 'portrait';
         },
         landscapeTablet: function() {
-            return Ext.orientation == 'landscape';
+            return !Ext.is.Phone && Ext.orientation == 'landscape';
         }
     }
 });
