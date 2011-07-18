@@ -69,15 +69,12 @@ new Ext.Application({
         viewport.setProfile = function (profile) {
             if (profile=='portraitPhone') {
                 this.setActiveItem(this.menu);
-            }
-            if (profile=='landscapePhone') {
+            } else if (profile=='landscapePhone') {
                 this.remove(this.menu, false);
                 this.setActiveItem(this.page);
-            }
-            if (profile=='portraitTablet') {
+            } else if (profile=='portraitTablet') {
                 this.removeDocked(this.menu, false);
-            }
-            if (profile=='landscapeTablet') {
+            } else if (profile=='landscapeTablet') {
                 this.addDocked(this.menu);
             }
         };
