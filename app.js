@@ -144,7 +144,7 @@ new Ext.Application({
                 '<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA</a> ' +
                 'from <a href="http://en.wikipedia.org/wiki/Piet_Mondrian">Wikipedia</a>.'
             );
-        })
+        });
 
     },
 
