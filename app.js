@@ -6,7 +6,6 @@ new Ext.Application({
 
         // construct UI
         var viewport = this.viewport = new Ext.Panel({
-            app: this,
             fullscreen: true,
             layout: 'card',
             showingPage: false,
